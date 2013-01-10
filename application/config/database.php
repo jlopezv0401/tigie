@@ -50,9 +50,9 @@ $active_record = TRUE;
 
 
 
-$db['default']['hostname'] = '127.5.236.1';
-$db['default']['username'] = 'admin';
-$db['default']['password'] = 'XQl6dzaQB-7u';
+$db['default']['hostname'] = '192.168.40.240';
+$db['default']['username'] = 'root';
+$db['default']['password'] = 'moises';
 $db['default']['database'] = 'tigie';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
