@@ -75,7 +75,7 @@ class Tarifa_model extends CI_Model {
     public function read_partida($capitulo){
         if ($capitulo){
             $partidas = $this->db->query('
-                SELECT DISTINCT (partida_desc), partida, partida_a_desc FROM (SELECT DISTINCT(partida), partida_desc, partida_a_desc FROM tarifa WHERE capitulo=\'' . $capitulo . '\' ORDER BY partida) as nueva');
+                SELECT DISTINCT (partida_desc) FROM (SELECT DISTINCT(partida), partida_desc, partida_a_desc FROM tarifa WHERE capitulo=\'' . $capitulo . '\' ORDER BY partida) as nueva');
             return $partidas->result_array();
         }
         else {
