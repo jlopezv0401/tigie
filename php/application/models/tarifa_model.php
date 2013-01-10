@@ -80,7 +80,7 @@ class Tarifa_model extends CI_Model {
         }
         else {
             $partidas = $this->db->query('
-               SELECT DISTINCT (partida_desc), partida, partida_a_desc FROM (SELECT DISTINCT(partida), partida_desc, partida_a_desc FROM tarifa ORDER BY partida) as nueva');
+               SELECT DISTINCT (partida_desc), partida FROM (SELECT DISTINCT(partida), partida_desc, partida_a_desc FROM tarifa ORDER BY partida) as nueva');
             return $partidas->result_array();
         }
     }
