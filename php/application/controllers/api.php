@@ -105,6 +105,11 @@ class Api extends REST_Controller {
 		}
 	}
 
+	function uno_get() {
+		$html = file_get_html('http://www.google.com/');
+		echo $html;
+	}
+
 	function buscar_palabras_get() {
 		if(!$this->get('palabras')) {
 			$palabras = '';

@@ -69,3 +69,12 @@ a, a:hover {
 .accordion-group{
 	margin-bottom: 15px;
 }
+
+#accordionF .activo{
+	background-color: #C3E4F1;
+}
+
+#accordionF .inactivo{
+	background-color: white;
+}
+

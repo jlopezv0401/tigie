@@ -55,6 +55,10 @@ $(function(){
 		$("#divaux").remove();
 		var div = document.createElement("div");
 		$(div).attr("id","divaux");
+		$("#accordionF .accordion-heading").removeClass("activo");
+		$("#accordionF .accordion-heading").addClass("inactivo");
+		$(elemento).parent().removeClass("inactivo");
+		$(elemento).parent().addClass("activo");
 		//$(div).addClass("row");
 		
 		$.ajax({
@@ -156,6 +160,7 @@ $(function(){
 					$(div1).addClass("accordion-group");
 					var div2 = document.createElement("div");
 					$(div2).addClass("accordion-heading");
+					$(div2).addClass("inactivo");
 					var a = document.createElement("a");
 					$(a).addClass("accordion-toggle");
 					$(a).attr("data-toggle","collapse");
