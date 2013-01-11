@@ -33,8 +33,13 @@ body{
 	border-radius: 5px;
 }
 
-.abajo {
+.abajoA {
 	background-color: #C3E4F1;
+	border-radius: 5px;
+}
+
+.abajo {
+	background-color: white;
 	border-radius: 5px;
 }
 
@@ -77,4 +82,5 @@ a, a:hover {
 #accordionF .inactivo{
 	background-color: white;
 }
+
 

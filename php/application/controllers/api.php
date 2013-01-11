@@ -16,6 +16,7 @@
 // This can be removed if you use __autoload() in config.php OR use Modular Extensions
 require APPPATH.'/libraries/REST_Controller.php';
 require APPPATH.'/libraries/sphinxapi.php';
+require APPPATH.'/libraries/simple_html_dom.php';
 
 class Api extends REST_Controller {
 
@@ -105,9 +106,16 @@ class Api extends REST_Controller {
 		}
 	}
 
-	function uno_get() {
-		$html = file_get_html('http://www.google.com/');
-		echo $html;
+	function buscar_get() {
+		if(!$this->get('palabras')) {
+			$palabras = '';
+		}
+		else $palabras = $this->get('palabras');
+
+		$url = 'http://www.siicex-caaarem.org.mx/Bases/TIGIE2007.nsf/d58945443a3d19d886256bab00510b2e?SearchView&Query=' . $palabras . '&SearchMax=20&SearchWV=true';
+		$html = file_get_html($url);
+		$tabla = $html->find('tbody');
+		echo $tabla;
 	}
 
 	function buscar_palabras_get() {

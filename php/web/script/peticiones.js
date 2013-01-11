@@ -125,6 +125,7 @@ $(function(){
 		$("#divaux").remove();
 		$("#atrasSP").show();
 		$("#titspart").html("Subpartida "+$(elemento).attr("id"));
+		$("#titspart").css("color","white");
 		$.ajax({
 			url: './script/BUSCAME2.php',
 			type: 'POST',
@@ -205,6 +206,7 @@ var getIdPart = function(elemento){
 	$("#partidas").hide();
 	$("#atrasP").show();
 	$("#titpart").html("Partida "+$(elemento).attr("id"));
+	$("#titpart").css("color","white");
 			//alert($(elemento).attr("id"));
 			$.ajax({
 				url: './script/BUSCAME2.php',
@@ -287,6 +289,7 @@ var getIdCap = function(elemento){
 	$("#fracciones").hide();
 	$("#secciones").hide();
 	$("#titcap").html("Capitulo "+$(elemento).attr("id"));
+	$("#titcap").css("color","white");
 	$.ajax({
 		url: './script/BUSCAME2.php',
 		type: 'POST',
