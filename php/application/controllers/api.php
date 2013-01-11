@@ -111,6 +111,7 @@ class Api extends REST_Controller {
 			$palabras = '';
 		}
 		else $palabras = $this->get('palabras');
+		
 
 		$url = 'http://www.siicex-caaarem.org.mx/Bases/TIGIE2007.nsf/d58945443a3d19d886256bab00510b2e?SearchView&Query=' . $palabras . '&SearchMax=20&SearchWV=true';
 		$html = file_get_html($url);
