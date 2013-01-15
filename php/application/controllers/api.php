@@ -116,10 +116,14 @@ class Api extends REST_Controller {
 
 		if($this->get('maximo')) {
 			$maximo = $this->get('maximo');
-			$url = 'http://www.siicex-caaarem.org.mx/Bases/TIGIE2007.nsf/d58945443a3d19d886256bab00510b2e?SearchView&Query=' . $palabras . '&SearchWV=true&SearchMax=' . $maximo . '&SearchOrder=1';
+			//$url = 'http://www.siicex-caaarem.org.mx/Bases/TIGIE2007.nsf/d58945443a3d19d886256bab00510b2e?SearchView&Query=' . $palabras . '&SearchWV=false&SearchMax=' . $maximo . '&SearchOrder=1';
+			$url = 'http://www.siicex-caaarem.org.mx/Bases/TIGIE2007.nsf/d58945443a3d19d886256bab00510b2e?SearchView&Query=' . $palabras;
+
 		}
 		else {
-			$url = 'http://www.siicex-caaarem.org.mx/Bases/TIGIE2007.nsf/d58945443a3d19d886256bab00510b2e?SearchView&Query=' . $palabras . '&SearchWV=true&SearchMax=30&SearchOrder=1';
+			//$url = 'http://www.siicex-caaarem.org.mx/Bases/TIGIE2007.nsf/d58945443a3d19d886256bab00510b2e?SearchView&Query=' . $palabras . '&SearchWV=false&SearchMax=30&SearchOrder=1';
+			$url = 'http://www.siicex-caaarem.org.mx/Bases/TIGIE2007.nsf/d58945443a3d19d886256bab00510b2e?SearchView&Query=' . $palabras;
+
 		}
 		
 
@@ -127,56 +131,63 @@ class Api extends REST_Controller {
 		$html = file_get_html($url);
 		//$busqueda = array();
 		$o=0;
-		foreach($html->find('table') as $tabla) {
-			if ($o==1) {
-				$p=0;
-				foreach($tabla->find('tr') as $fila){
-					$q=0;
-					foreach($fila->find('td') as $celda){
+		$tablas=$html->find('table');
+		if (count($tablas)==4){
+			foreach($html->find('table') as $tabla) {
+				if ($o==1) {
+					$p=0;
+					foreach($tabla->find('tr') as $fila){
+						$q=0;
+						foreach($fila->find('td') as $celda){
 
-						switch($q){
-							case 4:
-								$fraccion=$celda->plaintext;
-								break;
-							case 5:
-								$descripcion=$celda->plaintext;
-								break;
-							case 6:
-								$unidad_medida=$celda->plaintext;
-								break;
-							case 7:
-								$igi=$celda->plaintext;
-								break;
-							case 8:
-								$ige=$celda->plaintext;
-								break;
-						}	
-						// if ($q>3 && $q<9){
-						// 		echo $celda->plaintext . '<br>';
-						// }
-						$q++;
-					}
-					if ($p>1){
-						if ($fraccion){
-							$busqueda[$p-1] = array('fraccion' => $fraccion,
-								'descripcion' => $descripcion,
-								'unidad_medida' => $unidad_medida,
-								'igi' => $igi,
-								'ige' => $ige);
+							switch($q){
+								case 4:
+									$fraccion=$celda->plaintext;
+									break;
+								case 5:
+									$descripcion=$celda->plaintext;
+									break;
+								case 6:
+									$unidad_medida=$celda->plaintext;
+									break;
+								case 7:
+									$igi=$celda->plaintext;
+									break;
+								case 8:
+									$ige=$celda->plaintext;
+									break;
+							}	
+							// if ($q>3 && $q<9){
+							// 		echo $celda->plaintext . '<br>';
+							// }
+							$q++;
 						}
+						if ($p>1){
+							if ($fraccion){
+								$busqueda[$p-1] = array('fraccion' => $fraccion,
+									'descripcion' => $descripcion,
+									'unidad_medida' => $unidad_medida,
+									'igi' => $igi,
+									'ige' => $ige);
+							}
+						}
+						$p++;
 					}
-					$p++;
 				}
+				$o++;
 			}
-			$o++;
-		}
-
-		if ($busqueda){
-			$this->response($busqueda, 200);
+			if ($busqueda){
+				$this->response($busqueda, 200);
+			}
+			else {
+				$this->response(array('error' => 'No se obtuvieron resultados de la busqueda'), 404);
+			}
 		}
 		else {
 			$this->response(array('error' => 'No se obtuvieron resultados de la busqueda'), 404);
 		}
+
+
 	}
 
 	function buscar_palabras_get() {

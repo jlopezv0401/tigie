@@ -55,7 +55,7 @@ $db['default']['username'] = 'admin';
 $db['default']['password'] = 's7-ub1XzEnYs';
 $db['default']['database'] = 'tigie';
 
-// $db['default']['hostname'] = '192.168.40.240';
+// $db['default']['hostname'] = '192.168.10.240';
 // $db['default']['username'] = 'root';
 // $db['default']['password'] = 'moises';
 // $db['default']['database'] = 'tigie';
