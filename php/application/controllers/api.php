@@ -116,14 +116,10 @@ class Api extends REST_Controller {
 
 		if($this->get('maximo')) {
 			$maximo = $this->get('maximo');
-			//$url = 'http://www.siicex-caaarem.org.mx/Bases/TIGIE2007.nsf/d58945443a3d19d886256bab00510b2e?SearchView&Query=' . $palabras . '&SearchWV=false&SearchMax=' . $maximo . '&SearchOrder=1';
-			$url = 'http://www.siicex-caaarem.org.mx/Bases/TIGIE2007.nsf/d58945443a3d19d886256bab00510b2e?SearchView&Query=' . $palabras;
-
+			$url = 'http://www.siicex-caaarem.org.mx/Bases/TIGIE2007.nsf/d58945443a3d19d886256bab00510b2e?SearchView&Query=' . $palabras . '&SearchWV=false&SearchMax=' . $maximo . '&SearchOrder=1';
 		}
 		else {
-			//$url = 'http://www.siicex-caaarem.org.mx/Bases/TIGIE2007.nsf/d58945443a3d19d886256bab00510b2e?SearchView&Query=' . $palabras . '&SearchWV=false&SearchMax=30&SearchOrder=1';
-			$url = 'http://www.siicex-caaarem.org.mx/Bases/TIGIE2007.nsf/d58945443a3d19d886256bab00510b2e?SearchView&Query=' . $palabras;
-
+			$url = 'http://www.siicex-caaarem.org.mx/Bases/TIGIE2007.nsf/d58945443a3d19d886256bab00510b2e?SearchView&Query=' . $palabras . '&SearchWV=false&SearchMax=30&SearchOrder=1';
 		}
 		
 
@@ -164,7 +160,7 @@ class Api extends REST_Controller {
 						}
 						if ($p>1){
 							if ($fraccion){
-								$busqueda[$p-1] = array('fraccion' => $fraccion,
+								$busqueda[p-1]= array('fraccion' => $fraccion,
 									'descripcion' => $descripcion,
 									'unidad_medida' => $unidad_medida,
 									'igi' => $igi,
