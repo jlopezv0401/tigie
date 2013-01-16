@@ -160,7 +160,7 @@ class Api extends REST_Controller {
 						}
 						if ($p>1){
 							if ($fraccion){
-								$busqueda[p-1]= array('fraccion' => $fraccion,
+								$busqueda[p] = array('fraccion' => $fraccion,
 									'descripcion' => $descripcion,
 									'unidad_medida' => $unidad_medida,
 									'igi' => $igi,
