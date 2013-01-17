@@ -18,9 +18,26 @@
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
+//tigie-tracke.rhcloud.com or 192.168.10.240
+
+//define('ENVIRONMENT', 'development');
 
 
-	define('ENVIRONMENT', 'development');
+if (isset($_SERVER['SERVER_NAME']))
+{
+    switch ($_SERVER['SERVER_NAME']) {
+ 
+        case 'tigie-tracke.rhcloud.com':
+            define('ENVIRONMENT', 'production');
+        break;
+    // add additional cases for more environments
+    }
+}
+else
+{
+    define('ENVIRONMENT', 'development');
+}
+
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING

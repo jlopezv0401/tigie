@@ -45,32 +45,55 @@
 | the active record class
 */
 
-$active_group = 'default';
+switch (ENVIRONMENT) {
+    case 'production':
+        $active_group = 'production';
+    break;
+ 
+    // add additional cases for more environments
+ 
+    default:
+        $active_group = 'development';
+    break;
+}
+//$active_group = 'default';
 $active_record = TRUE;
 
 
 
-$db['default']['hostname'] = '127.3.233.1';
-$db['default']['username'] = 'admin';
-$db['default']['password'] = 's7-ub1XzEnYs';
-$db['default']['database'] = 'tigie';
+$db['development']['hostname'] = '192.168.10.240';
+$db['development']['username'] = 'root';
+$db['development']['password'] = 'moises';
+$db['development']['database'] = 'tigie';
+$db['development']['dbdriver'] = 'mysql';
+$db['development']['dbprefix'] = '';
+$db['development']['pconnect'] = TRUE;
+$db['development']['db_debug'] = TRUE;
+$db['development']['cache_on'] = FALSE;
+$db['development']['cachedir'] = '';
+$db['development']['char_set'] = 'utf8';
+$db['development']['dbcollat'] = 'utf8_general_ci';
+$db['development']['swap_pre'] = '';
+$db['development']['autoinit'] = TRUE;
+$db['development']['stricton'] = FALSE;
 
-// $db['default']['hostname'] = '192.168.10.240';
-// $db['default']['username'] = 'root';
-// $db['default']['password'] = 'moises';
-// $db['default']['database'] = 'tigie';
 
-$db['default']['dbdriver'] = 'mysql';
-$db['default']['dbprefix'] = '';
-$db['default']['pconnect'] = TRUE;
-$db['default']['db_debug'] = TRUE;
-$db['default']['cache_on'] = FALSE;
-$db['default']['cachedir'] = '';
-$db['default']['char_set'] = 'utf8';
-$db['default']['dbcollat'] = 'utf8_general_ci';
-$db['default']['swap_pre'] = '';
-$db['default']['autoinit'] = TRUE;
-$db['default']['stricton'] = FALSE;
+
+$db['production']['hostname'] = '127.3.233.1';
+$db['production']['username'] = 'admin';
+$db['production']['password'] = 's7-ub1XzEnYs';
+$db['production']['database'] = 'tigie';
+$db['production']['dbdriver'] = 'mysql';
+$db['production']['dbprefix'] = '';
+$db['production']['pconnect'] = TRUE;
+$db['production']['db_debug'] = TRUE;
+$db['production']['cache_on'] = FALSE;
+$db['production']['cachedir'] = '';
+$db['production']['char_set'] = 'utf8';
+$db['production']['dbcollat'] = 'utf8_general_ci';
+$db['production']['swap_pre'] = '';
+$db['production']['autoinit'] = TRUE;
+$db['production']['stricton'] = FALSE;
 
 
 /* End of file database.php */
