@@ -27,6 +27,7 @@
  * Different environments will require different levels of error reporting.
  * By default development will show errors but testing and live will hide them.
  */
+echo $_SERVER['PLATFORM'];
 
 if (defined('ENVIRONMENT'))
 {
@@ -134,7 +135,7 @@ if (defined('ENVIRONMENT'))
  * ---------------------------------------------------------------
  */
 
-	// Set the current directory correctly for CLI requests
+	// Set the current directory correctly for CLI requestso
 	if (defined('STDIN'))
 	{
 		chdir(dirname(__FILE__));
