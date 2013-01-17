@@ -78,7 +78,6 @@ $db['development']['autoinit'] = TRUE;
 $db['development']['stricton'] = FALSE;
 
 
-
 $db['production']['hostname'] = '127.3.233.1';
 $db['production']['username'] = 'admin';
 $db['production']['password'] = 's7-ub1XzEnYs';
