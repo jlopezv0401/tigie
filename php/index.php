@@ -19,7 +19,7 @@
  *
  */
 
-echo $_SERVER['PLATFORM'];
+
 	define('ENVIRONMENT', 'development');
 /*
  *---------------------------------------------------------------
