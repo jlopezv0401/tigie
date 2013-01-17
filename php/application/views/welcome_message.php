@@ -4,7 +4,7 @@
 </head>
 <body>
 
-<? php echo $_SERVER['PLATFORM']; ?>
+<?php echo $_SERVER['PLATFORM']; ?>
 <p>Directory access is forbidden.</p>
 
 </body>
