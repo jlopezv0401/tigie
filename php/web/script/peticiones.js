@@ -6,7 +6,69 @@ $(function(){
 	$("#partidas").hide();
 	$("#subpartidas").hide();
 	$("#fracciones").hide();
+	$("#busqueda").hide();
 
+
+	var opcionesVista = {"b1":"secciones","b2":"partidas","b3":"subpartidas","b4":"fracciones","b5":"secciones"};
+
+	function soloUna(opcion){
+		$("#busqueda").hide();
+		$("#secciones").hide();
+		$("#partidas").hide();
+		$("#subpartidas").hide();
+		$("#fracciones").hide();
+		$("#"+opcion).show();
+	}
+
+	function busqueda(palabra,contenedor){
+		$.ajax({
+			url: './script/BUSCAME2.php',
+			type: 'POST',
+			dataType: 'json',
+			data: {opc:'busqueda', busqueda:palabra},
+			success: function(data){
+
+				$("#r1").remove();
+				var ul = document.createElement("ul");
+				$(ul).addClass("busquedaul");
+				$(ul).attr("id","r1");
+				$("#res"+contenedor).append(ul);
+
+					for(var i= 1; i<11; i++){
+						if(data.hasOwnProperty(i)){
+							var li = document.createElement("li");
+							var a = document.createElement("a");
+							$(a).attr("href","#");
+							$(a).attr("id",data[i].fraccion);
+							$(a).addClass("opcbusq");
+							var fr = document.createElement("h5");
+							$(fr).append("Fracción. "+data[i].fraccion);
+							var texto = data[i].descripcion;
+							$(li).append(fr,texto);
+							$(a).append(li);
+							$(ul).append(a);
+						}
+					}
+
+					$(".opcbusq").click(function(){
+						getIdFrac($(this),"busqueda",1);
+					});
+
+					$("#atrasB").click(function(){
+						soloUna(opcionesVista[contenedor]);
+					});
+
+			}
+		});
+	}
+
+	$(".busquedainpt").keyup(function(){
+				if($(this).val().length>2){
+					busqueda($(this).val(),$(this).attr("id"));
+				}else
+				$("#r1").remove();
+			}
+	);
 
 	function verMas(mostrar,opt){
 		var pos = $(document).scrollTop();
@@ -47,12 +109,17 @@ $(function(){
 			return valor;
 	}
 
-	var getIdFrac = function(elemento){
+	var getIdFrac = function(elemento,contenedor,sen){
+
+		if(sen==1){
+			soloUna("busqueda");
+		}
 
 		$("#tabla1").remove();
 		$("#tabla2").remove();
 		$("#tabla3").remove();
 		$("#divaux").remove();
+		$("#r1").remove();
 		var div = document.createElement("div");
 		$(div).attr("id","divaux");
 		$("#accordionF .accordion-heading").removeClass("activo");
@@ -92,9 +159,8 @@ $(function(){
 
 				var tabla8 = "<h5><a class='ver' id='8' name='si'>Anexos  <i class='icon-plus'></i></a></h5><table class='table table-striped' id='tabla8'><tbody><tr><td>"+cambia(data[0].anexos)+"</td></tr></tbody></table>";
 				$(div).append(tabla8);
-//style='width:auto; text-align:center;'
 
-				$("#fracciones").append(div);
+				$("#"+contenedor).append(div);
 				$("#tabla7").hide();
 				$("#tabla8").hide();
 				$("#tabla6").hide();
@@ -126,6 +192,7 @@ $(function(){
 		$("#atrasSP").show();
 		$("#titspart").html("Subpartida "+$(elemento).attr("id"));
 		$("#titspart").css("color","white");
+		$("#r1").remove();
 		$.ajax({
 			url: './script/BUSCAME2.php',
 			type: 'POST',
@@ -190,7 +257,7 @@ $(function(){
 				}); 
 				$("#fracciones").show("slow");
 				$(".getIdFrac").click(function(){
-					getIdFrac($(this));
+					getIdFrac($(this),"fracciones");
 				});
 
 				$("#atrasSP").click(function(){
@@ -207,6 +274,7 @@ var getIdPart = function(elemento){
 	$("#atrasP").show();
 	$("#titpart").html("Partida "+$(elemento).attr("id"));
 	$("#titpart").css("color","white");
+	$("#r1").remove();
 			//alert($(elemento).attr("id"));
 			$.ajax({
 				url: './script/BUSCAME2.php',
@@ -290,6 +358,7 @@ var getIdCap = function(elemento){
 	$("#secciones").hide();
 	$("#titcap").html("Capitulo "+$(elemento).attr("id"));
 	$("#titcap").css("color","white");
+	$("#r1").remove();
 	$.ajax({
 		url: './script/BUSCAME2.php',
 		type: 'POST',
@@ -366,6 +435,7 @@ var getIdSec = function(elemento){
 	$("#partidas").hide();
 	$("#subpartidas").hide();
 	$("#fracciones").hide();
+	$("#r1").remove();
 	//$("#i"+$(elemento).attr("id")).removeClass();
 	if($("#i"+$(elemento).attr("id")).attr("class") == "icon-chevron-right")
 		$("#i"+$(elemento).attr("id")).attr("class","icon-chevron-down");

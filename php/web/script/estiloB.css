@@ -29,6 +29,7 @@ body{
 .divTit{
 	
 	margin-bottom: 15px;
+	margin-top: 30px;
 	background-color: #E1DFDF;
 	border-radius: 5px;
 }
@@ -36,6 +37,8 @@ body{
 .abajoA {
 	background-color: #C3E4F1;
 	border-radius: 5px;
+	height: 40px;
+	font-weight: bolder;
 }
 
 .abajo {
@@ -83,4 +86,53 @@ a, a:hover {
 	background-color: white;
 }
 
+.busquedainpt{
+	margin: 5px -5px 5px 5px;
+	float: right;
+	width: 150px
+}
 
+.busquedaul{
+	position: absolute;
+	width: 213px;
+	top: 55px;
+	right: 60px;
+	z-index: 2;
+}
+
+.busquedaul li{
+	list-style: none;
+	border: solid;
+	border-width: thin;
+	width: 215px;
+	background-color: white;
+}
+
+.btnbusq{
+	float:right; 
+	margin: 5px 5px auto;
+}
+
+.span11 .btnbusq{
+	float:right; 
+	margin: 0px 5px auto;
+}
+
+.span11 .busquedainpt{
+	margin: 0px -5px 5px 5px;
+	float: right;
+}
+
+/*.span11 .busquedaul{
+	z-index: 2;
+	position: absolute;
+	width: 213px;
+	right: 140px;
+	top: 50px;
+}*/
+
+.dale{
+	position: relative;
+	right: -2%;
+	margin-top: -20px;
+}

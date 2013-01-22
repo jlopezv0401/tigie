@@ -34,7 +34,8 @@
 			break;
 
 		case 'busqueda':
-
+			$url = curl_init($base."/buscar/palabras/".$_POST['busqueda']."/maximo/10");
+			$resp = curl_exec($url);
 			break;
 		
 		default:
