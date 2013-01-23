@@ -103,6 +103,14 @@
 			}
 	);
 
+	$(".busquedainpt").keypress(function(tecla){
+		if(tecla.which == 13){
+			if($(this).val().length>2){
+					busqueda($(this).val(),$(this).attr("id"));
+				}
+		}
+	});
+
 	
 
 	function verMas(mostrar,opt){
