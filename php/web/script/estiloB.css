@@ -78,7 +78,7 @@ a, a:hover {
 	margin-bottom: 15px;
 }
 
-#accordionF .activo{
+#accordionF .activo, #accordionRB .activo{
 	background-color: #C3E4F1;
 }
 
