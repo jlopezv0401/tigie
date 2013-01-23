@@ -1,4 +1,4 @@
-$(function(){
+ $(function(){
 
 	$("#atrasS").hide();
 	$("#atrasP").hide();
@@ -10,7 +10,6 @@ $(function(){
 
 
 	var opcionesVista = {"b1":"secciones","b2":"partidas","b3":"subpartidas","b4":"fracciones","b5":"secciones"};
-
 	function soloUna(opcion){
 		$("#busqueda").hide();
 		$("#secciones").hide();
@@ -28,27 +27,58 @@ $(function(){
 			data: {opc:'busqueda', busqueda:palabra},
 			success: function(data){
 
-				$("#r1").remove();
-				var ul = document.createElement("ul");
-				$(ul).addClass("busquedaul");
-				$(ul).attr("id","r1");
-				$("#res"+contenedor).append(ul);
+
+					$("#accordionRB").remove();
+
+					var div0 = document.createElement("div");
+					$(div0).addClass("accordion");
+					$(div0).attr("id","accordionRB");
+					$("#busqueda").append(div0);
+
+					var divTit = document.createElement("div");
+					$(divTit).addClass("divTit");
+					$(divTit).css("margin-top","50px");
+					var h3 = document.createElement("h3");
+					$(h3).html("Resutados de la búsqueda");
+					$(divTit).append(h3);
+					$("#accordionRB").append(divTit);
 
 					for(var i= 1; i<11; i++){
 						if(data.hasOwnProperty(i)){
-							var li = document.createElement("li");
+
+							var div1 = document.createElement("div");
+							$(div1).addClass("accordion-group");
+							var div2 = document.createElement("div");
+							$(div2).addClass("accordion-heading");
 							var a = document.createElement("a");
+							$(a).addClass("accordion-toggle");
+							$(a).attr("data-toggle","collapse");
+							$(a).attr("data-parent","#accordionRB");
 							$(a).attr("href","#");
 							$(a).attr("id",data[i].fraccion);
 							$(a).addClass("opcbusq");
-							var fr = document.createElement("h5");
-							$(fr).append("Fracción. "+data[i].fraccion);
-							var texto = data[i].descripcion;
-							$(li).append(fr,texto);
-							$(a).append(li);
-							$(ul).append(a);
+							
+							$(a).append("<b>Fracción "+data[i].fraccion+".</b> "+data[i].descripcion);
+							var icono = document.createElement("i");
+							$(icono).addClass("icon-chevron-right");
+							$(icono).css("float","right");
+							$(a).append(icono);
+							$(div2).append(a);
+							$(div1).append(div2);
+							var div3 = document.createElement("div");
+							
+							$(div3).addClass("accordion-body");
+							$(div3).addClass("collapse");
+							$(div3).css("height","0px");
+
+							$(div1).append(div3);
+							$("#accordionRB").append(div1);
+
+
 						}
 					}
+
+					soloUna("busqueda");
 
 					$(".opcbusq").click(function(){
 						getIdFrac($(this),"busqueda",1);
@@ -56,19 +86,23 @@ $(function(){
 
 					$("#atrasB").click(function(){
 						soloUna(opcionesVista[contenedor]);
+						$("#accordionRB").remove();
+						$(".busquedainpt").val("");
+						$("#divaux").remove();
 					});
 
 			}
 		});
 	}
 
-	$(".busquedainpt").keyup(function(){
-				if($(this).val().length>2){
-					busqueda($(this).val(),$(this).attr("id"));
-				}else
-				$("#r1").remove();
+	$(".btnbusq").click(function(){
+				if($($(this).parent()).find(".busquedainpt").val().length>2){
+					busqueda($($(this).parent()).find(".busquedainpt").val(),$($(this).parent()).find(".busquedainpt").attr("id"));
+				}
 			}
 	);
+
+	
 
 	function verMas(mostrar,opt){
 		var pos = $(document).scrollTop();
